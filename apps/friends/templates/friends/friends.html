@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">    
+        <title>Friends </title>
+        <!-- ADDED THIS TO LOAD STATIC FOLDER ITEMS -->
+        {% load static %}
+        <!-- <link rel="stylesheet" href="{% static 'friends/css/style.css' %}"> -->
+    </head>
+
+    <body>
+        {% if error_message %}
+            <p><strong> {{ error_message }}</strong></p>
+        {% endif %}
+        <!-- Grab user "alias" -->
+        <span><h3>Hello, {{me.alias}} </h3></span>
+        <a href="{% url 'friends:logout' %}">Logout</a>
+
+        <p>Here is the list of your friends: </p>
+        <table>
+            <colgroup>
+                <col>
+                <col style="background-color: rgb(100, 128, 0)">
+            </colgroup>
+            <tr>
+                <th>Alias</th>
+                <th>Action</th>
+            </tr>
+            {% if friends %}
+                {% for friend in friends %}
+                    <tr>
+                        <td> {{friend.alias}} </td>
+                        <td> 
+                            <a href="{% url 'friends:remove' id=friend.id %}">Remove as friend</a>
+                            <a href="{% url 'friends:profile' id=friend.id %}">View Profile</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </table>            
+            {% else %}
+                </table>
+                <p>You do not have any friends yet. C'mon, add some friends to your profile!</p>
+            {% endif %}
+
+        <p>Other Users not on your friend's list:</p>
+        <!-- Table of Alias(Link: View Profile) and Action (Link: Add as Friend) -->
+        <table>
+            <colgroup>
+                <col>
+                <col style="background-color: rgba(185, 155, 73, 0.486)">
+            </colgroup>
+            <tr>
+                <th>Alias</th>
+                <th>Action</th>
+            </tr>
+            {% if not_friends %}
+                {% for user in not_friends %}
+                    <tr>    
+                        <td><a href="{% url 'friends:profile' id=user.id %}">{{user.alias}}</a></td>
+                        <td><a href="{% url 'friends:add' id=user.id %}">Add as Friend</a></td>
+                    </tr>
+                {% endfor %}
+                </table>            
+            {% else %}
+                </table>
+                <p>There are currently no more users to add as your friends. Invite more users to the platform to friend them!</p>
+            {% endif %}
+    </body>
+</html>

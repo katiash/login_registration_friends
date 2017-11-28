@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Katia/Desktop/Django_Projects/Belt1/main/db.sqlite3" foreign_keys="1"/>
+<window>
+<current_tab id="1"/></window><tab_structure><column_width id="0" width="846"/><column_width id="1" width="0"/><column_width id="2" width="228"/><column_width id="3" width="5523"/><expanded_item id="0" parent="1"/><expanded_item id="11" parent="0"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="friends_user_friends"/><default_encoding codec=""/><browsetable_info data="AAAAAwAAACgAZgByAGkAZQBuAGQAcwBfAHUAcwBlAHIAXwBmAHIAaQBlAG4AZABzAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAAAD//////////wAAAAD/////AAAAGABmAHIAaQBlAG4AZABzAF8AdQBzAGUAcgAAAAAAAAAAAAAAAAAAAAkAAAAIAAAAAAAAAAcAAAAAAAAABgAAAAAAAAAFAAAAAAAAAAQAAAAAAAAAAwAAAAAAAAACAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAP//////////AAAAAP////8AAAAUAGEAdQB0AGgAXwBnAHIAbwB1AHAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAP//////////AAAAAP////8="/></tab_browse><tab_sql><sql name="SQL 1">select * from friends_user
+
+delete from friends_user where id=0
+
+insert into friends_user(name, alias, email, password, dob, created_at, updated_at) values (&quot;James Breland&quot;, &quot;Rebrel&quot;, &quot;James.Breland@gmail.com&quot;, &quot;12345&quot;, &quot;1985-09-05&quot;, current_timestamp, current_timestamp)
+
+
+
+insert into friends_user_friends(from_user_id, to_user_id) values (3, 4)
+
+insert into friends_user_friends(from_user_id, to_user_id) values (4, 3)
+
+
+
+select * from friends_user_friends
+
+
+
+select friends_user.alias, friended.alias from friends_user 
+
+join friends_user_friends on friends_user.id=friends_user_friends.from_user_id
+
+join friends_user as friended on friends_user_friends.to_user_id=friended.id 
+
+where from_user_id=3</sql><current_tab id="0"/></tab_sql></sqlb_project>

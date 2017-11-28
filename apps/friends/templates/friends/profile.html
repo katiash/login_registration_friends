@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> {{user.alias}}</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'friends/css/style.css' %}">
+    </head>
+    <body>
+        <a href="{% url 'friends:success' %}">Home</a>
+        <a href="{% url 'friends:logout' %}">Logout</a>
+        <h3>{{user.alias}}'s Profile</h3>
+        <p>Name: {{user.name}}</p>
+        <p>Email Address: {{user.email}}</p>
+    </body>
+</html>
